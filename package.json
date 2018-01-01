@@ -1,0 +1,24 @@
+{
+  "name": "vue-token-fixed",
+  "version": "0.0.1",
+  "description": "Simple token storage/ authorization in vuejs. Edit",
+  "main": "auth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Abdurrahman-Gungor/vue-token-fixed.git"
+  },
+  "keywords": [
+    "vue",
+    "token",
+    "authentication"
+  ],
+  "author": "Abdurrahman Güngör",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Abdurrahman-Gungor/vue-token-fixed/issues"
+  },
+  "homepage": "https://github.com/Abdurrahman-Gungor/vue-token-fixed#readme"
+}
