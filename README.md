@@ -11,6 +11,35 @@ This plugin requires you to initialize the [vue-resource](https://github.com/vue
 The token will be stored into the Authorization header with each request you make with the vue-resource plugin.
 
 	npm install vue-token-fixed --save
+	
+# router.js (Sample)
+
+	import Vue from 'vue'
+	import VueRouter from 'vue-router'
+
+	Vue.use(VueRouter)
+
+	function load (component) {
+ 	 return () => import(`@/${component}.vue`)
+	}
+
+	const vueRoter = new VueRouter({
+ 	 mode: 'hash',
+
+ 	 routes: [
+   	 {
+    	  path: '/',
+    	  component: load('Layout'),
+     	 // props: true,
+     	 children: [{ path: 'start-day', component: load('StartDay') }]
+   	 },
+    	{ path: '/login', component: load('Login') },
+    	{ path: '*', component: load('Error404') } // Not found
+  	]
+	})
+
+	export default vueRoter
+
 
 # Usage
 
