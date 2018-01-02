@@ -106,6 +106,9 @@ The token will be stored into the Authorization header with each request you mak
 		//Remove the token from the localStorage.
 		removeToken()
 
+# Note
+	In Ajax requests, the returned token object is taken as "data.token".
+
 # License
 [MIT](https://github.com/Abdurrahman-Gungor/vue-token-fixed/blob/master/LICENSE)# vue-token-fixed
 
