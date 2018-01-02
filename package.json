@@ -1,7 +1,7 @@
 {
   "name": "vue-token-fixed",
   "version": "0.0.2",
-  "description": "Simple token storage/ authorization in vuejs. Edit",
+  "description": "Simple token storage/ authorization in vuejs.",
   "main": "auth.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
