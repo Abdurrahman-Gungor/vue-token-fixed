@@ -1,7 +1,7 @@
 # Project Forked 
 This project is fork of [Vue-Token](https://github.com/joostlawerman/Vue-Token).
 
-This fork fixed the ***Error in created hook: "TypeError: Cannot read property 'post' of undefined"*** error.
+This fork fixed the ***Vue Resource Http*** and ***Vue Router*** error.
 
 # Vue-Token
 Simple token storage/ authorization in vuejs.
@@ -14,12 +14,14 @@ The token will be stored into the Authorization header with each request you mak
 
 # Usage
 
-	import Auth from "vue-token";
+	import Auth from 'vue-token-fixed';	
+	import router from './router';
 	Vue.use(Auth, options);
 
 ## Options
 
 	{
+	 	router: router,
 		loginUrl: "/api/login", 
 		signupUrl: "/api/users", 
 		logoutUrl: "/api/logout"
@@ -43,7 +45,7 @@ The token will be stored into the Authorization header with each request you mak
 		},
 		methods: {
 			send() {
-            	this.$auth.login(this, this.input, "profile/0", (errors) => {
+            	this.$auth.login(this, this.input, "Redirect to path after login", (errors) => {
 					console.log(errors);
             	});
             }
@@ -55,13 +57,13 @@ The token will be stored into the Authorization header with each request you mak
 
 	$auth.
 		// Send a (post) request to the loginUrl.
-		login(context, input, redirect = false, errorHandler = false)
+		login(input, redirect = false, errorHandler = false)
 			
 		// Send a (post) request to the signupUrl.
-		register(context, input, redirect = false, errorHandler = false login = true)
+		register(input, redirect = false, errorHandler = false login = true)
 			
 		//Send a (get) request to the logoutUrl.
-		logout(context, redirect = false, errorHandler = false)
+		logout(redirect = false, errorHandler = false)
 			
 		//Check if a token is being stored and if is not null.
 		check()
