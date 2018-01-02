@@ -1,13 +1,12 @@
 
 const Auth = {
-	install(vue, options = { loginUrl: "/api/login", signupUrl: "/api/users", logoutUrl: "/api/logout", refresh: false}) {
-		vue.prototype.$auth = new Authenticate(vue, options.loginUrl, options.signupUrl, options.logoutUrl);
+	install(vue, options = { loginUrl: "/api/login", signupUrl: "/api/users", logoutUrl: "/api/logout", refresh: false }) {
+		vue.prototype.$auth = new Authenticate(vue,options.router, options.loginUrl, options.signupUrl, options.logoutUrl);
 
 		vue.http.interceptors.push((request, next) => {
-
-	        if (!request.headers.hasOwnProperty('Authorization')) {
-	            request.headers['Authorization'] = localStorage.getItem("token");
-	        }
+			if (!request.headers.hasOwnProperty('Authorization')) {
+				request.headers['Authorization'] = localStorage.getItem("token");
+			}
 
 			if (options.refresh) {
 				next((response) => {
@@ -21,51 +20,52 @@ const Auth = {
 
 if (typeof exports == "object") {
 	// Export
-    module.exports = Auth;
+	module.exports = Auth;
 } else if (window.Vue) {
 	// Vue use if vue is being used on the page
 	Vue.use(Auth);
 }
 
 class Authenticate {
-	constructor(context, loginUrl, signupUrl, logoutUrl) {
+	constructor(context, router, loginUrl, signupUrl, logoutUrl) {
 		this.authenticated = this.check();
 		this.loginUrl = loginUrl;
 		this.signupUrl = signupUrl;
 		this.logoutUrl = logoutUrl;
 		this.context = context;
+		this.router = router;
 	}
 
-	login(context, input, redirect = false, errorHandler = false) {
-		this.context.http.post(this.loginUrl, input).then((response) => {
+	login(loginInfo, redirect = false, errorHandler = false) {
+		this.context.http.get(this.loginUrl, loginInfo).then((response) => {
 			this.setToken(response.data.token);
 
 			this.authenticated = true;
 
-			redirect(this.context, redirect);
+			redirectPage(this.router, redirect);
 
 		}, handleErrors(errorHandler));
 	}
 
-	register(context, input, redirect = false, errorHandler = false, login = true) {
-		this.context.http.post(this.signupUrl, input).then((response) => {
+	register(context, loginInfo, redirect = false, errorHandler = false, login = true) {
+		this.context.http.post(this.signupUrl, loginInfo).then((response) => {
 			if (login) {
 				this.setToken(response.data.token);
 
 				this.authenticated = true;
 			}
-			redirect(this.context, redirect);
+			redirect(this.router, redirect);
 
 		}, handleErrors(errorHandler));
 	}
 
-	logout(context, redirect = false, errorHandler = false) {
+	logout(redirect = false, errorHandler = false) {
 		this.context.http.get(this.logoutUrl).then((response) => {
 			this.removeToken();
 
 			this.authenticated = false;
 
-			redirect(this.context, redirect);
+			redirectPage(this.router, redirect);
 
 		}, handleErrors(errorHandler));
 	}
@@ -87,9 +87,9 @@ class Authenticate {
 	}
 }
 
-function redirect(context, redirect) {
+function redirectPage(router, redirect) {
 	if (redirect !== false) {
-		context.$router.go(redirect);
+		router.push({ path: redirect })
 	}
 }
 
