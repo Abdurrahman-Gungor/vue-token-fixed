@@ -71,7 +71,7 @@ class Authenticate {
 	}
 
 	check() {
-		validToken(this.getToken());
+		return validToken(this.getToken());
 	}
 
 	getToken() {
