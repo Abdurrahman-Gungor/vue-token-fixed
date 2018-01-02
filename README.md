@@ -10,7 +10,7 @@ This plugin requires you to initialize the [vue-resource](https://github.com/vue
 
 The token will be stored into the Authorization header with each request you make with the vue-resource plugin.
 
-	npm install vue-token --save
+	npm install vue-token-fixed --save
 
 # Usage
 
