@@ -12,6 +12,12 @@ The token will be stored into the Authorization header with each request you mak
 
 	npm install vue-token-fixed --save
 	
+# Usage
+
+	import Auth from 'vue-token-fixed';	
+	import router from './router';
+	Vue.use(Auth, options);
+	
 # router.js (Sample)
 
 	import Vue from 'vue'
@@ -40,12 +46,6 @@ The token will be stored into the Authorization header with each request you mak
 
 	export default vueRoter
 
-
-# Usage
-
-	import Auth from 'vue-token-fixed';	
-	import router from './router';
-	Vue.use(Auth, options);
 
 ## Options
 
