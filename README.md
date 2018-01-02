@@ -74,7 +74,7 @@ The token will be stored into the Authorization header with each request you mak
 		},
 		methods: {
 			send() {
-            	this.$auth.login(this, this.input, "Redirect to path after login", (errors) => {
+            	this.$auth.login(this.input, "Redirect to path after login", (errors) => {
 					console.log(errors);
             	});
             }
