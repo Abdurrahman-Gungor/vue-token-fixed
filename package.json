@@ -1,6 +1,6 @@
 {
   "name": "vue-token-fixed",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Simple token storage/ authorization in vuejs.",
   "main": "auth.js",
   "scripts": {
