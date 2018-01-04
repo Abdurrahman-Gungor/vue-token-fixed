@@ -1,8 +1,3 @@
-# Project Forked 
-This project is fork of [Vue-Token](https://github.com/joostlawerman/Vue-Token).
-
-This fork fixed the ***Vue Resource Http*** and ***Vue Router*** error.
-
 # Vue-Token
 Simple token storage/ authorization in vuejs.
 
