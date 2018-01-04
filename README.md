@@ -29,11 +29,6 @@ The token will be stored into the Authorization header with each request you mak
 
  	 routes: [
    	 {
-    	  path: '/',
-    	  component: load('Layout'),
-     	 // props: true,
-     	 children: [{ path: 'start-day', component: load('StartDay') }]
-   	 },
     	{ path: '/login', component: load('Login') },
     	{ path: '*', component: load('Error404') } // Not found
   	]
@@ -49,7 +44,7 @@ The token will be stored into the Authorization header with each request you mak
 		loginUrl: "/api/login", 
 		signupUrl: "/api/users", 
 		logoutUrl: "/api/logout"
-		refresh: false // Utalize the automatic refresh of tokens (it will use the token from response.token as the new token)
+		refresh: false // Utalize the automatic refresh of tokens
 	}
 
 ## Example Component
@@ -64,12 +59,9 @@ The token will be stored into the Authorization header with each request you mak
 				}
 			}
 		},
-		created(){
-			//
-		},
 		methods: {
 			send() {
-            	this.$auth.login(this.input, "Redirect to path after login", (errors) => {
+            	this.$auth.login({email:this.input.email,password:this.input.password}, "Redirect to path after login", (errors) => {
 					console.log(errors);
             	});
             }
@@ -80,11 +72,11 @@ The token will be stored into the Authorization header with each request you mak
 ## Methods
 
 	$auth.
-		// Send a (post) request to the loginUrl.
-		login(input, redirect = false, errorHandler = false)
+		// Send a (get) request to the loginUrl.
+		login(fieldInfos, redirect = false, errorHandler = false)
 			
 		// Send a (post) request to the signupUrl.
-		register(input, redirect = false, errorHandler = false login = true)
+		register(fieldInfos, redirect = false, errorHandler = false login = true)
 			
 		//Send a (get) request to the logoutUrl.
 		logout(redirect = false, errorHandler = false)
